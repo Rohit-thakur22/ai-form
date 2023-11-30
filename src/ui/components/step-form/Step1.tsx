@@ -1,5 +1,5 @@
 import React from "react";
-import { FormData } from "../../../libs/types/formData";
+import { FormData } from "../../../libs/types/formDataType";
 
 interface prop {
   formData: FormData;
@@ -62,7 +62,7 @@ const Step1 = ({ formData, setFormData }: prop) => {
             {" "}
             They identify as:
           </label>
-          <div className="w-full flex justify-between items-center mb-4 gap-4">
+          <div className="w-full flex  flex-col sm:flex-row justify-between items-center mb-4 gap-4">
             <div className="border rounded-lg p-2 w-full">
               <input
                 type="radio"

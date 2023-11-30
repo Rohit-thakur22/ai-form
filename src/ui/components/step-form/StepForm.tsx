@@ -1,13 +1,18 @@
 import React, { useState } from "react";
-import Step1 from "./Step1";
+import { useDispatch } from "react-redux";
 import glossy from "../../../assets/images/gift.jpg";
+import { FormData } from "../../../libs/types/formDataType";
+import { formSubmit, handleLoader } from "../../../store/reducer/formdata";
+import { AppDispatch } from "../../../store/store";
+import Step1 from "./Step1";
 import Step2 from "./Step2";
-import { FormData } from "../../../libs/types/formData";
+import { useNavigate } from "react-router-dom";
 
 const StepForm: React.FC = () => {
+  const navigate = useNavigate();
   const [step, setStep] = useState(1);
   const [error, setError] = useState(false);
-
+  const dispatch = useDispatch<AppDispatch>();
   const [formData, setFormData] = useState<FormData>({
     buyFor: "",
     age: "",
@@ -32,18 +37,31 @@ const StepForm: React.FC = () => {
   };
 
   const handleSubmit = () => {
-    if (formData.country == "") {
+    if (formData.country === "") {
       setError(true);
     } else {
+      dispatch(handleLoader(true));
       const promise = new Promise((resolve) => {
         setTimeout(() => {
-          resolve("Resolved after 5 seconds");
+          resolve(formData);
         }, 5000);
       });
       promise.then((result) => {
+        dispatch(formSubmit(result));
+        dispatch(handleLoader(false));
         setError(false);
-        alert("done");
-        console.log(formData);
+        setFormData({
+          buyFor: "",
+          age: "",
+          gender: "",
+          description: "",
+          occasion: "",
+          gift: "",
+          spendAmount: "",
+          country: "",
+        });
+        setStep(1);
+        navigate("/list");
       });
     }
   };

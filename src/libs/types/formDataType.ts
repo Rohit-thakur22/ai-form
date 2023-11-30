@@ -8,3 +8,10 @@ export type FormData = {
   spendAmount?: string;
   country?: string;
 };
+
+export type initialStateType = {
+  data: FormData;
+  isLoading: boolean;
+};
+
+

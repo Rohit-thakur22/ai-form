@@ -1,4 +1,4 @@
-import { FormData } from "../../../libs/types/formData";
+import { FormData } from "../../../libs/types/formDataType";
 interface prop {
   formData: FormData;
   setFormData: any;
@@ -98,6 +98,9 @@ const Step2 = ({ formData, setFormData, error }: prop) => {
             value={formData.country}
             placeholder="Enter interests and hobbies"
           >
+            <option value="" disabled>
+              Select Option
+            </option>
             <option value="United States">United States</option>
             <option value="India">India</option>
           </select>

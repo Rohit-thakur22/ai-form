@@ -1,15 +1,15 @@
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
-import Navbar from "./ui/components/Navbar";
-import StepForm from "./ui/components/step-form/StepForm";
-
+import List from "./ui/pages/list";
+import Home from "./ui/pages/home";
 function App() {
   return (
-    <div className="flex flex-col  items-center min-h-screen w-full">
-      <Navbar />
-      <main className="w-full mx-auto">
-        <StepForm />
-      </main>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/list" element={<List />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
